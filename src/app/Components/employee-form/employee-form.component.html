@@ -1,0 +1,46 @@
+<div class="container py-4">
+    <h2 class="mb-4 text-success"><i class="fas fa-user-plus me-2"></i>{{ isEditMode ? 'Edit' : 'Add' }} Employee</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row g-3 bg-light p-4 rounded shadow-sm">
+      <div class="col-md-6">
+        <label class="form-label">First Name</label>
+        <input type="text" formControlName="firstName" class="form-control" />
+        <div class="text-danger small" *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched">
+          First name is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label class="form-label">Last Name</label>
+        <input type="text" formControlName="lastName" class="form-control" />
+        <div class="text-danger small" *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched">
+          Last name is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input type="email" formControlName="email" class="form-control" />
+        <div class="text-danger small" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+          Valid email is required.
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <label class="form-label">Position</label>
+        <input type="text" formControlName="position" class="form-control" />
+        <div class="text-danger small" *ngIf="form.get('position')?.invalid && form.get('position')?.touched">
+          Position is required.
+        </div>
+      </div>
+  
+      <div class="col-12 d-flex justify-content-end gap-2 mt-3">
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid">
+          <i class="fas fa-check-circle me-1"></i>{{ isEditMode ? 'Update' : 'Create' }}
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">
+          <i class="fas fa-times"></i> Cancel
+        </button>
+      </div>
+    </form>
+  </div>

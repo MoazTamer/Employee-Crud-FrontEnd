@@ -1,0 +1,8 @@
+button:disabled {
+    cursor: not-allowed;
+  }
+  
+  .spinner-border {
+    margin-right: 8px;
+  }
+  

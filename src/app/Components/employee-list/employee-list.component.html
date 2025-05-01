@@ -1,0 +1,63 @@
+<div class="container py-4">
+  <h2 class="mb-4 text-primary"><i class="fas fa-users me-2"></i>Employee List</h2>
+
+  <div class="row mb-3 g-2 align-items-center">
+    <div class="col-md-4">
+      <input [(ngModel)]="search" (input)="searchEmployees()" class="form-control shadow-sm" placeholder="🔍 Search by name..." />
+    </div>
+    <div class="col-md-4">
+      <input [(ngModel)]="positionFilter" (input)="searchEmployees()" class="form-control shadow-sm" placeholder="💼 Filter by position..." />
+    </div>
+    <div class="col-md-2">
+      <button (click)="toggleSort()" class="btn btn-outline-secondary w-100">
+        <i class="fas fa-sort"></i> {{ sortDirection || 'Sort' }}
+      </button>
+    </div>
+    <div class="col-md-2">
+      <button (click)="addEmployee()" class="btn btn-success w-100">
+        <i class="fas fa-plus"></i> Add
+      </button>
+    </div>
+  </div>
+
+  <!-- Spinner while loading -->
+  <div class="text-center py-3" *ngIf="employees.length === 0">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div class="table-responsive" *ngIf="filteredEmployees.length > 0">
+    <table class="table table-striped table-hover align-middle shadow rounded">
+      <thead class="table-primary">
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Position</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of filteredEmployees">
+          <td>{{ emp.firstName }}</td>
+          <td>{{ emp.lastName }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.position }}</td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-warning me-2" (click)="editEmployee(emp.id)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="deleteEmployee(emp.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="filteredEmployees.length === 0 && employees.length > 0" class="alert alert-warning text-center mt-4">
+    No employees found matching the filters.
+  </div>
+</div>
