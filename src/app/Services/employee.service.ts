@@ -8,13 +8,12 @@ import { CreateEmployee, Employee, UpdateEmployee } from '../models/employee.mod
 })
 export class EmployeeService {
 
-  private apiUrl =  'https://localhost:7287/api/Employees'; 
   private baseUrl = 'https://localhost:7287/api/Employees'; 
 
   constructor(private http: HttpClient) { }
 
   getEmployees(): Observable<any> {
-    return this.http.get<Employee>(this.apiUrl);
+    return this.http.get<Employee>(this.baseUrl);
   }
 
   getAll(): Observable<Employee[]> {
